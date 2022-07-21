@@ -3,6 +3,10 @@ package com.fashionShop.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fashionShop.entity.Product;
@@ -10,14 +14,14 @@ import com.fashionShop.repository.ProductRepository;
 
 @Service
 public class ProductService {
-
-	private final ProductRepository productRepo;
-	
 	@Autowired
-	public ProductService(ProductRepository productRepo) {
-		super();
-		this.productRepo = productRepo;
-	}
+	private  ProductRepository productRepo;
+	
+	
+//	public ProductService(ProductRepository productRepo) {
+//		super();
+//		this.productRepo = productRepo;
+//	}
 
 
 	public Object getProduct() {
@@ -25,10 +29,29 @@ public class ProductService {
 		return productRepo.findAll();
 	}
 
-
-	public List<Product> getProductTest() {
+	public Page<Product> listAll(int pageNumber){
+		Pageable pageable = PageRequest.of(pageNumber - 1, 12);
+		return productRepo.findAll(pageable);
+	}
+	
+	public Page<Product> listAll(int pageNumber, String category){
+		Pageable pageable = PageRequest.of(pageNumber - 1, 10);
+		return productRepo.getProductsByCategory(pageable, category);
+	}
+		
+	
+	public List<Product> findAllProduct() {
 		// TODO Auto-generated method stub
-		return productRepo.findAll();
+		return (List<Product>) productRepo.findAll();
 	}
 
+//	public List<Product> findProductsWithSorting(String field){
+//		return productRepo.findAll(Sort.by(Sort.Direction.ASC, field));
+//	}
+	
+	public Page<Product> findPaginated(int pageNO, int pageSize){
+		Pageable pageable = PageRequest.of(pageNO - 1, pageSize);
+		return this.productRepo.findAll(pageable);
+				
+	}
 }

@@ -47,5 +47,7 @@ public class FashionShopConfiguration implements WebMvcConfigurer{
             .addResourceLocations("/WEB-INF/Source/");
 	        
 	      
-	    }		
+	    }	
+		
+		
 }

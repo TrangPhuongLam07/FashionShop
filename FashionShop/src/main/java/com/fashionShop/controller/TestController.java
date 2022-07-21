@@ -25,7 +25,7 @@ public class TestController {
 	  @GetMapping
 	    public List<Product> getStudent(){
 
-	        return productService.getProductTest();
+	        return productService.findAllProduct();
 	    }
 	
 }
