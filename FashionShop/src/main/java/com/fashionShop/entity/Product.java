@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "product")
 @NoArgsConstructor
 @Data
+@Builder
 @AllArgsConstructor
 public class Product {
 	@Id
@@ -46,15 +49,36 @@ public class Product {
 	@Column(name = "image", columnDefinition = "VARCHAR(255)")
 	private String image;
 	
-	@ManyToMany(mappedBy = "products")
-	private List<ShoppingCart> shoppingCarts = new ArrayList<ShoppingCart>();
+	@OneToMany(mappedBy = "productID")
+	private List<CartItem> cartItems = new ArrayList<CartItem>();
+	
+//	@ManyToMany(mappedBy = "products")
+//	private List<ShoppingCart> shoppingCarts = new ArrayList<ShoppingCart>();
 
 	@ManyToMany(mappedBy = "products")
 	private List<Bill> bills = new ArrayList<Bill>();
 
 
+//	public Product(Categories categoryID, String productname, long price, Date dateImport, int amount, String image,
+//			List<ShoppingCart> shoppingCarts, List<Bill> bills) {
+//		super();
+//		this.categoryID = categoryID;
+//		this.productname = productname;
+//		this.price = price;
+//		this.dateImport = dateImport;
+//		this.amount = amount;
+//		this.image = image;
+////		this.shoppingCarts = shoppingCarts;
+//		this.bills = bills;
+//	}
+	
+
+	public Product() {
+		super();
+	}
+
 	public Product(Categories categoryID, String productname, long price, Date dateImport, int amount, String image,
-			List<ShoppingCart> shoppingCarts, List<Bill> bills) {
+			List<Bill> bills) {
 		super();
 		this.categoryID = categoryID;
 		this.productname = productname;
@@ -62,12 +86,7 @@ public class Product {
 		this.dateImport = dateImport;
 		this.amount = amount;
 		this.image = image;
-		this.shoppingCarts = shoppingCarts;
 		this.bills = bills;
-	}
-
-	public Product() {
-		super();
 	}
 
 	public String getProductID() {
@@ -126,13 +145,13 @@ public class Product {
 		this.image = image;
 	}
 
-	public List<ShoppingCart> getShoppingCarts() {
-		return shoppingCarts;
-	}
-
-	public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
-		this.shoppingCarts = shoppingCarts;
-	}
+//	public List<ShoppingCart> getShoppingCarts() {
+//		return shoppingCarts;
+//	}
+//
+//	public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
+//		this.shoppingCarts = shoppingCarts;
+//	}
 
 	public List<Bill> getBills() {
 		return bills;

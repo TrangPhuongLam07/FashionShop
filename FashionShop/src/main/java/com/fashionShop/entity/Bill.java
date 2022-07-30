@@ -36,9 +36,11 @@ public class Bill {
 	
 	@ManyToMany
 	@JoinTable(name = "detailBill",
-			joinColumns = @JoinColumn(name = "bill_ID", referencedColumnName = "bill_ID"),
+			joinColumns  = @JoinColumn(name = "bill_ID", referencedColumnName = "bill_ID"),
 			inverseJoinColumns = @JoinColumn(name = "product_ID", referencedColumnName = "product_ID")
+			
 			)
+	
 	private List<Product> products = new ArrayList<Product>();
 	
 }

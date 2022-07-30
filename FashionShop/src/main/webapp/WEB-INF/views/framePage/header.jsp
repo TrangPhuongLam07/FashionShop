@@ -38,12 +38,12 @@
                                 <div>English</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="#">Spanis</a></li>
+                                    <li><a href="#">Spanish</a></li>
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <a href="/login"><i class="fa fa-user"></i>Login ${customerID}</a>
                             </div>
                         </div>
                     </div>
@@ -54,13 +54,13 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/home"><img src="img/logo-fashionShop-2.jpg" alt=""></a>
+                        <a href="/"><img src="img/logo-fashionShop-2.jpg" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="/home">Home</a></li>
+                            <li class="active"><a href="/">Home</a></li>
                             <li><a href="/saleOff">Sale Off</a></li>
 <!--                             <li><a href="#">Pages</a> -->
 <!--                                 <ul class="header__menu__dropdown"> -->
@@ -79,7 +79,7 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="/cart/${customerID}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>

@@ -1,5 +1,6 @@
 package com.fashionShop.config;
 
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -46,7 +47,67 @@ public class FashionShopConfiguration implements WebMvcConfigurer{
 	        registry.addResourceHandler("/Source/**")
             .addResourceLocations("/WEB-INF/Source/");
 	        
+	        //cart
+	        
+	        registry.addResourceHandler("/cart/fonts/**")
+            .addResourceLocations("/WEB-INF/fonts/");
+
+		    registry.addResourceHandler("/cart/css/**")
+		            .addResourceLocations("/WEB-INF/css/");
+		
+		    registry.addResourceHandler("/cart/js/**")
+		            .addResourceLocations("/WEB-INF/js/");
+		    	
+		    registry.addResourceHandler("/cart/img/**")
+		    		.addResourceLocations("/WEB-INF/img/");
+		    
+		    registry.addResourceHandler("/cart/sass/**")
+		    		.addResourceLocations("/WEB-INF/sass/");
+		    
+		    registry.addResourceHandler("/cart/Source/**")
+		    		.addResourceLocations("/WEB-INF/Source/");
+	        
+		    
+	        //delete
+	        
+	        registry.addResourceHandler("/cart/delete/fonts/**")
+            .addResourceLocations("/WEB-INF/fonts/");
+
+		    registry.addResourceHandler("/cart/delete/css/**")
+		            .addResourceLocations("/WEB-INF/css/");
+		
+		    registry.addResourceHandler("/cart/delete/js/**")
+		            .addResourceLocations("/WEB-INF/js/");
+		    	
+		    registry.addResourceHandler("/cart/delete/img/**")
+		    		.addResourceLocations("/WEB-INF/img/");
+		    
+		    registry.addResourceHandler("/cart/delete/sass/**")
+		    		.addResourceLocations("/WEB-INF/sass/");
+		    
+		    registry.addResourceHandler("/cart/delete/Source/**")
+		    		.addResourceLocations("/WEB-INF/Source/");
 	      
+		    
+		    //add
+	        
+	        registry.addResourceHandler("/cart/add/fonts/**")
+            .addResourceLocations("/WEB-INF/fonts/");
+
+		    registry.addResourceHandler("/cart/add/css/**")
+		            .addResourceLocations("/WEB-INF/css/");
+		
+		    registry.addResourceHandler("/cart/add/js/**")
+		            .addResourceLocations("/WEB-INF/js/");
+		    	
+		    registry.addResourceHandler("/cart/add/img/**")
+		    		.addResourceLocations("/WEB-INF/img/");
+		    
+		    registry.addResourceHandler("/cart/add/sass/**")
+		    		.addResourceLocations("/WEB-INF/sass/");
+		    
+		    registry.addResourceHandler("/cart/add/Source/**")
+		    		.addResourceLocations("/WEB-INF/Source/");
 	    }	
 		
 		

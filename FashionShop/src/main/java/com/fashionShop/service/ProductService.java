@@ -1,5 +1,6 @@
 package com.fashionShop.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.fashionShop.entity.CartItem;
 import com.fashionShop.entity.Product;
 import com.fashionShop.repository.ProductRepository;
 
@@ -39,7 +41,9 @@ public class ProductService {
 		return productRepo.getProductsByCategory(pageable, category);
 	}
 		
-	
+	public Iterable<Product> findAll(){
+		return productRepo.findAll();
+	}
 	public List<Product> findAllProduct() {
 		// TODO Auto-generated method stub
 		return (List<Product>) productRepo.findAll();
@@ -53,5 +57,15 @@ public class ProductService {
 		Pageable pageable = PageRequest.of(pageNO - 1, pageSize);
 		return this.productRepo.findAll(pageable);
 				
+	}
+
+	public List<Product> listProductInCart(List<CartItem> listCartItems) {
+		List<Product> products = new ArrayList<Product>();
+		for (CartItem cartItem : listCartItems) {
+			
+			products.add(productRepo.findByProductID(cartItem.getProduct().getProductID()));
+		}
+		
+		return products;
 	}
 }

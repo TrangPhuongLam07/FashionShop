@@ -40,7 +40,7 @@
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="/cart/add/${a.productID}/1/${customerID}"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -51,59 +51,7 @@
                 </div>
                 </c:forEach>
                
-<%--                 <c:forEach items="${listProductsQuan}" var="qu" > --%>
-<!--                 <div class="col-lg-3 col-md-4 col-sm-6 mix quan"> -->
-<!--                     <div class="featured__item"> -->
-<%--                         <div class="featured__item__pic set-bg" data-setbg="${qu.image}"> --%>
-<!--                             <ul class="featured__item__pic__hover"> -->
-<!--                                 <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
-<!--                             </ul> -->
-<!--                         </div> -->
-<!--                         <div class="featured__item__text"> -->
-<%--                             <h6><a href="#">${qu.productname}</a></h6> --%>
-<%--                             <h5>${qu.price}</h5> --%>
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<%--                   </c:forEach> --%>
-                  
-<%--                  <c:forEach items="${listProductsNon}" var="n"> --%>
-<!--                 <div class="col-lg-3 col-md-4 col-sm-6 mix non"> -->
-<!--                     <div class="featured__item"> -->
-<%--                         <div class="featured__item__pic set-bg" data-setbg="${n.image}"> --%>
-<!--                             <ul class="featured__item__pic__hover"> -->
-<!--                                 <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
-<!--                             </ul> -->
-<!--                         </div> -->
-<!--                         <div class="featured__item__text"> -->
-<%--                             <h6><a href="#">${n.productname}</a></h6> --%>
-<%--                             <h5>${n.price}</h5> --%>
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<%--                 </c:forEach> --%>
-                
-<%--                 <c:forEach items="${listProductsTui}" var="t"> --%>
-<!--                 <div class="col-lg-3 col-md-4 col-sm-6 mix tui"> -->
-<!--                     <div class="featured__item"> -->
-<%--                         <div class="featured__item__pic set-bg" data-setbg="${t.image}"> --%>
-<!--                             <ul class="featured__item__pic__hover"> -->
-<!--                                 <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
-<!--                             </ul> -->
-<!--                         </div> -->
-<!--                         <div class="featured__item__text"> -->
-<%--                             <h6><a href="#">${t.productname}</a></h6> --%>
-<%--                             <h5>${t.price}</h5> --%>
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<%--                     </c:forEach> --%>
+
                  <div>
                  Total Items: ${totalItems} - Page ${currentPage} of ${totalPages}
                  &nbsp;-
@@ -115,77 +63,7 @@
                  		</span>
                  </c:forEach>
                  </div>
-<%--                  <div> Total Items: ${totalItems} - Page ${currentPage} of ${totalPages} --%>
-<%--                  	<c:forEach items = "${#numbers.sequence(1, totalPages)}" var="i"> --%>
-<!--                  	<span> -->
-                 
-<%--                  		<a>${i}</a> --%>
-<!--                  	</span> -->
-<%--                  	</c:forEach> --%>
-                 	
-<!--                  </div> -->
-                 
-<!--                 <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables"> -->
-<!--                     <div class="featured__item"> -->
-<!--                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-5.jpg"> -->
-<!--                             <ul class="featured__item__pic__hover"> -->
-<!--                                 <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
-<!--                             </ul> -->
-<!--                         </div> -->
-<!--                         <div class="featured__item__text"> -->
-<!--                             <h6><a href="#">Crab Pool Security</a></h6> -->
-<!--                             <h5>$30.00</h5> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-                
-<!--                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood"> -->
-<!--                     <div class="featured__item"> -->
-<!--                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-6.jpg"> -->
-<!--                             <ul class="featured__item__pic__hover"> -->
-<!--                                 <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
-<!--                             </ul> -->
-<!--                         </div> -->
-<!--                         <div class="featured__item__text"> -->
-<!--                             <h6><a href="#">Crab Pool Security</a></h6> -->
-<!--                             <h5>$30.00</h5> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables"> -->
-<!--                     <div class="featured__item"> -->
-<!--                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-7.jpg"> -->
-<!--                             <ul class="featured__item__pic__hover"> -->
-<!--                                 <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
-<!--                             </ul> -->
-<!--                         </div> -->
-<!--                         <div class="featured__item__text"> -->
-<!--                             <h6><a href="#">Crab Pool Security</a></h6> -->
-<!--                             <h5>$30.00</h5> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables"> -->
-<!--                     <div class="featured__item"> -->
-<!--                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-8.jpg"> -->
-<!--                             <ul class="featured__item__pic__hover"> -->
-<!--                                 <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
-<!--                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
-<!--                             </ul> -->
-<!--                         </div> -->
-<!--                         <div class="featured__item__text"> -->
-<!--                             <h6><a href="#">Crab Pool Security</a></h6> -->
-<!--                             <h5>$30.00</h5> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
+
                 
             </div>
         </div>

@@ -25,6 +25,9 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, S
 			+ "in(select c.categoryID from Categories c where c.categorytype = ?1) ")
 	List<Product> getProductsByCategory(String category);
 
+	@Query("select p from Product p where p.productID = ?1 ")
+	Product findByProductID(String productID);
+
 //    List<Product> getProductsByCategory(String category);
 }
 

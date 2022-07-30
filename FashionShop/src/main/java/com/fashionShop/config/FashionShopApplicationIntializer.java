@@ -25,6 +25,7 @@ public class FashionShopApplicationIntializer implements WebApplicationInitializ
 		ServletRegistration.Dynamic myCustomDispatcherServlet = servletContext.addServlet("myDispatcherServlet", dispatcherServlet);
 		myCustomDispatcherServlet.setLoadOnStartup(1);
 		myCustomDispatcherServlet.addMapping("/");
+		myCustomDispatcherServlet.addMapping("/cart");
 	}
 
 }

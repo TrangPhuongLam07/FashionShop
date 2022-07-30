@@ -2,24 +2,32 @@ package com.fashionShop.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fashionShop.entity.Account;
 import com.fashionShop.entity.Product;
 import com.fashionShop.service.ProductService;
 
 @Controller
-//@RequestMapping("/hello")
+//@RequestMapping("/Home")
 public class HomeController {
 	
 	private final ProductService productService;
+	
 	
 	@Autowired
 	public HomeController(ProductService productService) {
@@ -33,8 +41,13 @@ public class HomeController {
 		return listByPage(model, 1);
 	}
 	
-	@GetMapping(path = "{pageNumber}")
-//	@RequestMapping(value= "/page/{pageNumber}", method = RequestMethod.GET)
+	@RequestMapping("/products")
+	public ResponseEntity<Iterable<Product>> findAll(){
+		return new ResponseEntity<Iterable<Product>>(productService.findAll(), HttpStatus.OK);
+	}
+	
+//	@GetMapping(path = "{pageNumber}")
+	@RequestMapping(value= "{pageNumber}", method = RequestMethod.GET)
 	public String listByPage(Model model, @PathVariable("pageNumber") int currentPage) {
 		System.out.println("current page......"+currentPage);
 		
@@ -61,6 +74,7 @@ public class HomeController {
 //		model.addAttribute("listProductsNon", listProductsNon);
 		return "/home/index";
 	}
+	
 	
 	
 	
@@ -91,6 +105,30 @@ public class HomeController {
 		return "/saleOff/sale-off";
 	}
 	
+	@RequestMapping("/detailProduct")
+	public String detailProduct() {
+		return "/product/detail-product";
+	}
+	
+//	@RequestMapping("/shoppingCart")
+//	public String shoppingCart() {
+//		return "/shoppingCart/shopping-cart";
+//	}
+	
+	@RequestMapping(value= "/login", method= RequestMethod.GET)
+	public String login() {
+		return "/Login/login";
+	}
+	
+	
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	public String signUp() {
+	
+		return "/signUp/signUp";
+	}
+	
+	
+	
 	@GetMapping("/page/{pageNO}")
 	public String findPaginated (@PathVariable(value = "pageNO") int pageNO, Model model) {
 		int pageSize = 5;
@@ -105,4 +143,6 @@ public class HomeController {
 		
 		return "/home/index";
 	}
+	
+	
 }
