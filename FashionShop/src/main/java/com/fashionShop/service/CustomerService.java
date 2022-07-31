@@ -1,5 +1,7 @@
 package com.fashionShop.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -31,6 +33,18 @@ public class CustomerService {
 		 customerRepo.save(customer);
 		
 	}
+
+	public String getCustomerID(String accountName) {
+		// TODO Auto-generated method stub
+		return customerRepo.getCustomerID(accountName);
+	}
+
+	public void setAccountNameByCustomerID(String customerID, String accountName) {
+		// TODO Auto-generated method stub
+		customerRepo.setAccountNameByCustomerID(customerID, accountName);
+	}
+
+	
 
 	
 	

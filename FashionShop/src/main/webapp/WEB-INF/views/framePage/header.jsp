@@ -42,8 +42,17 @@
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="/login"><i class="fa fa-user"></i>Login ${customerID}</a>
+                            <div class="header__top__right__auth"  id="logout">
+                               
+								
+								
+<!-- 								 <a href="/login" id="login" class="login"><i class="fa fa-user  " ></i> Login</a> -->
+								
+								 <a href="/login" style="display: ;" class="name"><i class="fa fa-user " ></i> ${accountname}</a>
+                               
+                                
+                                <a href="/logout/${customerID}/${accountname}" class="logout">Logout</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -92,6 +101,6 @@
     </header>
     <!-- Header Section End -->
     
-    
+        <script src="js/js-signup/signup.js"></script>
 </body>
 </html>

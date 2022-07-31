@@ -64,7 +64,7 @@
                                  <div class="invalid-feedback" style="font-size:16px; color: red;">You don't agree</div>
                             </div>
                             
-                            <button class="form-submit">Register</button>
+                            <button name="signup" id="signup" class="form-submit">Register</button>
 <!--                             <div class="form-group form-button"> -->
 <!--                                 <input type="button" name="signup" id="signup" class="form-submit" value="Register"/> -->
                                
@@ -73,13 +73,13 @@
                     </div>
                     <div class="signup-image">
                         <figure><img src="img/signup-image.jpg" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link">I am already member</a>
+                        <a href="/login" class="signup-image-link">I am already member</a>
                     </div>
                 </div>
             </div>
         </section>
 
-		<button onclick="getAllProducts()">Show All Products</button>
+		
         
     </div>
 

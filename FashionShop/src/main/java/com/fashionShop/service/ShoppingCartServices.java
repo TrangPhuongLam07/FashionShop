@@ -62,4 +62,13 @@ public class ShoppingCartServices {
 		
 	}
 
+	public void saveShoppingCart(Customer customer) {
+		// TODO Auto-generated method stub
+		ShoppingCart shoppingCart = new ShoppingCart();
+		shoppingCart.setCustomerID(customer);
+		shoppingCart.setState("buying");
+		shoppingCartRepo.save(shoppingCart);
+		
+	}
+
 }

@@ -2,10 +2,15 @@ package com.fashionShop.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,17 +26,21 @@ public class Account {
 	@Column(name = "account_name", columnDefinition = "VARCHAR(50)")
 	private String accountname;
 	
+	@Column(name = "customer_ID", columnDefinition = "VARCHAR(10)")
+	private String customerID;
+	
+	
 	@Column(name = "password", columnDefinition = "VARCHAR(500)")
 	private String password;
 	
 	@Column(name = "role", columnDefinition = "VARCHAR(20)")
 	private String role;
 	
-	@OneToOne
-	@JoinColumn(name = "customer_ID")
-	private Customer customerID;
+	@OneToOne(mappedBy = "accountname")
+	private Customer customer;
 
-	public Account(String accountname, String password, String role, Customer customerID) {
+	
+	public Account(String accountname, String password, String role, String customerID) {
 		super();
 		this.accountname = accountname;
 		this.password = password;
@@ -75,8 +84,13 @@ public class Account {
 		return password;
 	}
 
-	public Customer getCustomerID() {
+	public String getCustomerID() {
 		return customerID;
+	}
+
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 	
 	

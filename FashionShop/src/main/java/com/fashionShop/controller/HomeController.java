@@ -52,38 +52,27 @@ public class HomeController {
 		System.out.println("current page......"+currentPage);
 		
 		Page<Product> page = productService.listAll(currentPage);
-//		Page<Product> page = productService.listAll(currentPage, "Áo");
-//		Page<Product> pageQuan = productService.listAll(currentPage, "Quan");
-//		Page<Product> pageTui = productService.listAll(currentPage, "Tui");
-//		Page<Product> pageNon = productService.listAll(currentPage, "Non");
 		long totalItems = page.getTotalElements();
 		int totalPages = page.getTotalPages();
 		
-//		List<Product> lisProducts = page.getContent();
 		List<Product> listProducts = page.getContent();
-//		List<Product> listProductsQuan = pageQuan.getContent();
-//		List<Product> listProductsTui = pageTui.getContent();
-//		List<Product> listProductsNon = pageNon.getContent();
 		
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalItems", totalItems);
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("listProducts", listProducts);
-//		model.addAttribute("listProductsQuan", listProductsQuan);
-//		model.addAttribute("listProductsTui", listProductsTui);
-//		model.addAttribute("listProductsNon", listProductsNon);
 		return "/home/index";
 	}
 	
 	
 	
 	
-	@RequestMapping("/home")
-	public ModelAndView getProducts() {
-		ModelAndView mv = new ModelAndView("/home/index");
-		mv.addObject("list", productService.getProduct());
-		return mv;
-	}
+//	@RequestMapping("/home")
+//	public ModelAndView getProducts() {
+//		ModelAndView mv = new ModelAndView("/home/index");
+//		mv.addObject("list", productService.getProduct());
+//		return mv;
+//	}
 	
 //	@GetMapping("/home")
 //	public String viewHomePage(Model model) {
@@ -115,34 +104,34 @@ public class HomeController {
 //		return "/shoppingCart/shopping-cart";
 //	}
 	
-	@RequestMapping(value= "/login", method= RequestMethod.GET)
-	public String login() {
-		return "/Login/login";
-	}
+//	@RequestMapping(value= "/login", method= RequestMethod.GET)
+//	public String login() {
+//		return "/Login/login";
+//	}
+//	
+//	
+//	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+//	public String signUp() {
+//	
+//		return "/signUp/signUp";
+//	}
 	
 	
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	public String signUp() {
 	
-		return "/signUp/signUp";
-	}
-	
-	
-	
-	@GetMapping("/page/{pageNO}")
-	public String findPaginated (@PathVariable(value = "pageNO") int pageNO, Model model) {
-		int pageSize = 5;
-		
-		Page<Product> page = productService.findPaginated(pageNO, pageSize);
-		List<Product> listProduct = page.getContent();
-		
-		model.addAttribute("currentPage", pageNO);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("toatlItems", page.getTotalElements());
-		model.addAttribute("listProduct", listProduct);
-		
-		return "/home/index";
-	}
+//	@GetMapping("/page/{pageNO}")
+//	public String findPaginated (@PathVariable(value = "pageNO") int pageNO, Model model) {
+//		int pageSize = 5;
+//		
+//		Page<Product> page = productService.findPaginated(pageNO, pageSize);
+//		List<Product> listProduct = page.getContent();
+//		
+//		model.addAttribute("currentPage", pageNO);
+//		model.addAttribute("totalPages", page.getTotalPages());
+//		model.addAttribute("toatlItems", page.getTotalElements());
+//		model.addAttribute("listProduct", listProduct);
+//		
+//		return "/home/index";
+//	}
 	
 	
 }

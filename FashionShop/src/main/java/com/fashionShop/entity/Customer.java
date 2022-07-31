@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -47,8 +48,9 @@ public class Customer {
 	@OneToMany(mappedBy = "customerID")
 	private List<ShoppingCart> shoppingCarts = new ArrayList<ShoppingCart>();
 	
-	@OneToOne(mappedBy = "customerID")
-	private Account account;
+	@OneToOne
+	@JoinColumn(name = "account_name")
+	private Account accountname;
 	
 	@OneToMany(mappedBy = "customerID")
 	private List<Bill> bills = new ArrayList<Bill>();
@@ -63,8 +65,35 @@ public class Customer {
 		this.numberPhone = numberPhone;
 		this.numberAccountBank = numberAccountBank;
 	}
+
+
+
+	public Customer( String customerName, String email, String address, String numberPhone, 
+			String numberAccountBank, Account accountname) {
+		super();
+		this.customerName = customerName;
+		this.email = email;
+		this.address = address;
+		this.numberPhone = numberPhone;
+		this.numberAccountBank = numberAccountBank;
+		this.accountname = accountname;
+	}
 	
 	
+
+	public Customer(String customerID, String customerName, String email, String address, String numberPhone,
+			String numberAccountBank, Account accountname) {
+		super();
+		this.customerID = customerID;
+		this.customerName = customerName;
+		this.email = email;
+		this.address = address;
+		this.numberPhone = numberPhone;
+		this.numberAccountBank = numberAccountBank;
+		this.accountname = accountname;
+	}
+
+
 
 	public Customer() {
 		super();
@@ -127,11 +156,11 @@ public class Customer {
 	}
 
 	public Account getAccount() {
-		return account;
+		return accountname;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccount(Account accountname) {
+		this.accountname = accountname;
 	}
 
 	public List<Bill> getBills() {
