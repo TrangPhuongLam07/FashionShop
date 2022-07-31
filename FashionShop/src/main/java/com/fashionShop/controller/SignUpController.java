@@ -67,10 +67,8 @@ public class SignUpController {
 	
 	
 	
-	@RequestMapping(value = "/logout/{customerID}/{accountname}", method = RequestMethod.GET)
-	public String logout(@PathVariable("customerID") String customerID, 
-			@PathVariable("accountname") String accountname, 
-			HttpServletRequest servletRequest) {
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest servletRequest) {
 		HttpSession session = servletRequest.getSession(false);
 		if (session != null) {
 	        servletRequest.getSession(true).invalidate();

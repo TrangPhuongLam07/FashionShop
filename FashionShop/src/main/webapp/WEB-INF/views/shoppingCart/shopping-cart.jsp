@@ -79,7 +79,7 @@
                                        <c:out value=" ${c.price *c.quantity}"></c:out>
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                    <span><a href="/cart/delete/${c.productID}/${customerID}" class="icon_close"></a></span>
+                                    <span><a href="/cart/delete/${c.productID}" class="icon_close"></a></span>
                                     	
                                     </td>
                                 </tr>
@@ -119,14 +119,14 @@
                         <h5>Cart Total</h5>
                         <ul>
                             <li>Subtotal <span>0</span></li>
-                            <c:set value="0" var="total"></c:set>
-                            <c:forEach items="${listShowCartItem}" var="c">
+<%--                             <c:set value="0" var="total"></c:set> --%>
+<%--                             <c:forEach items="${listShowCartItem}" var="c"> --%>
                             	
-                            	${total += c.price*c.quantity}<br/>
-                            </c:forEach>
-                            <c:out value="${total}"></c:out>
+<%--                             	${total += c.price*c.quantity}<br/> --%>
+<%--                             </c:forEach> --%>
+<%--                             <c:out value="${total}"></c:out> --%>
                             
-                            <li>Total <span>$454.98</span></li>
+                            <li>Total <span>${totalCart}</span></li>
                         </ul>
                         <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>

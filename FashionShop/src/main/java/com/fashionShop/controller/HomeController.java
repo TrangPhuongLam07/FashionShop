@@ -1,7 +1,9 @@
 package com.fashionShop.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,27 +20,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fashionShop.dto.ShowCartItemDTO;
 import com.fashionShop.entity.Account;
+import com.fashionShop.entity.CartItem;
 import com.fashionShop.entity.Product;
 import com.fashionShop.service.ProductService;
+import com.fashionShop.service.ShoppingCartServices;
 
 @Controller
 //@RequestMapping("/Home")
 public class HomeController {
 	
 	private final ProductService productService;
+	private final ShoppingCartServices cartServices;
 	
 	
 	@Autowired
-	public HomeController(ProductService productService) {
+	public HomeController(ProductService productService, ShoppingCartServices cartServices) {
 		super();
 		this.productService = productService;
+		this.cartServices = cartServices;
 	}
 
 	@RequestMapping("/")
-	public String viewHomePage(Model model) {
+	public String viewHomePage(Model model, HttpSession session) {
 		
-		return listByPage(model, 1);
+		return listByPage(model, 1, session);
 	}
 	
 	@RequestMapping("/products")
@@ -48,7 +55,9 @@ public class HomeController {
 	
 //	@GetMapping(path = "{pageNumber}")
 	@RequestMapping(value= "{pageNumber}", method = RequestMethod.GET)
-	public String listByPage(Model model, @PathVariable("pageNumber") int currentPage) {
+	public String listByPage(Model model, 
+			@PathVariable("pageNumber") int currentPage,
+			HttpSession session) {
 		System.out.println("current page......"+currentPage);
 		
 		Page<Product> page = productService.listAll(currentPage);
@@ -56,6 +65,15 @@ public class HomeController {
 		int totalPages = page.getTotalPages();
 		
 		List<Product> listProducts = page.getContent();
+		
+		String customerID = (String) session.getAttribute("customerID");
+		List<ShowCartItemDTO> listShowCartItemDTO = getListShowCartItemDTO(customerID);
+			
+			
+			long totalCartItem = totalPriceCart(listShowCartItemDTO);
+			int totalItemCart = totalItemCart(listShowCartItemDTO);
+			session.setAttribute("totalCart", totalCartItem);
+			session.setAttribute("totalItemCart", totalItemCart);
 		
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalItems", totalItems);
@@ -95,27 +113,68 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/detailProduct")
-	public String detailProduct() {
+	public String detailProduct(Model model, Product product) {
+		model.addAttribute("product", product);
+//		model.addAttribute("quantity", quantity);
+//		model.addAttribute("productname", product.getProductname());
+//		model.addAttribute("productID", product.getProductID());
+//		model.addAttribute("price", product.getPrice());
+//		model.addAttribute("image", product.getImage());
 		return "/product/detail-product";
+		
 	}
 	
-//	@RequestMapping("/shoppingCart")
-//	public String shoppingCart() {
-//		return "/shoppingCart/shopping-cart";
-//	}
+	@RequestMapping("/detailProduct/{productID}")
+	public String showDetailProduct(Model model, @PathVariable("productID") String productID, 
+			HttpSession session) {
+		Product product = productService.getProductByID(productID);
+		System.out.println("productID: " + productID);
+		System.out.println("product name: " + product.getProductname());
+//		System.out.println("quantity: " + quantity);
+		
+		return	detailProduct(model, product);
+		
+//		return "redirect:/detailProduct";
+		
+	}
 	
-//	@RequestMapping(value= "/login", method= RequestMethod.GET)
-//	public String login() {
-//		return "/Login/login";
-//	}
-//	
-//	
-//	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-//	public String signUp() {
-//	
-//		return "/signUp/signUp";
-//	}
+	public List<ShowCartItemDTO> getListShowCartItemDTO(String customerID){
+		String shoppingCartID = cartServices.getShoppingCartID(customerID);
+		List<CartItem> listCartItems = cartServices.listCartItems(shoppingCartID);
+		List<Product> products = productService.listProductInCart(listCartItems);
+		List<ShowCartItemDTO> listShowCartItemDTO = new ArrayList<ShowCartItemDTO>();
+		
+		
+		for (int i = 0; i < products.size(); i++) {
+			ShowCartItemDTO showItemDTO = new ShowCartItemDTO();
+			Product product = products.get(i);
+			CartItem cartItem = listCartItems.get(i);
+			
+			showItemDTO.setProductname(product.getProductname());
+			showItemDTO.setImage(product.getImage());
+			showItemDTO.setPrice(product.getPrice());
+			showItemDTO.setQuantity(cartItem.getQuantity());
+			showItemDTO.setProductID(product.getProductID());
+			
+			listShowCartItemDTO.add(showItemDTO);
+		}
+		
+		return listShowCartItemDTO;
+		
+	}
+	public long totalPriceCart(List<ShowCartItemDTO> listShowCartItemDTO) {
+		long total = 0;
+		for (ShowCartItemDTO showCartItemDTO : listShowCartItemDTO) {
+			total += showCartItemDTO.getPrice()*showCartItemDTO.getQuantity();
+		}
+		return total;
+	}
 	
+	public int totalItemCart(List<ShowCartItemDTO> listShowCartItemDTO) {
+		int total = listShowCartItemDTO.size();
+		
+		return total;
+	}	
 	
 	
 //	@GetMapping("/page/{pageNO}")

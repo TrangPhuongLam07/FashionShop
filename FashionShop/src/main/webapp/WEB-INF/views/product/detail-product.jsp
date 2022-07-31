@@ -1,5 +1,8 @@
 <!-- Config page -->
-<jsp:include page="../framePage/config-page.jsp"></jsp:include>
+<%-- <%@include file="../framePage/config-page.jsp" %> --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -26,10 +29,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Name Product</h2>
+                        <h2>${product.productname}</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <a href="./index.html">Product</a>
+                            <a href="/">Home</a>
+                            <a href="/">Product</a>
                             <span>Product's Package</span>
                         </div>
                     </div>
@@ -47,23 +50,23 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="img/product/details/product-details-1.jpg" alt="">
+                                src="${product.image}" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="img/product/details/product-details-2.jpg"
-                                src="img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-3.jpg"
-                                src="img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-5.jpg"
-                                src="img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-4.jpg"
-                                src="img/product/details/thumb-4.jpg" alt="">
+                            <img data-imgbigurl="${product.image}"
+                                src="${product.image}" alt="">
+<!--                             <img data-imgbigurl="img/product/details/product-details-3.jpg" -->
+<!--                                 src="img/product/details/thumb-2.jpg" alt=""> -->
+<!--                             <img data-imgbigurl="img/product/details/product-details-5.jpg" -->
+<!--                                 src="img/product/details/thumb-3.jpg" alt=""> -->
+<!--                             <img data-imgbigurl="img/product/details/product-details-4.jpg" -->
+<!--                                 src="img/product/details/thumb-4.jpg" alt=""> -->
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>Product Name</h3>
+                        <h3>${product.productname}</h3>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -72,7 +75,7 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                        <div class="product__details__price">$50.00</div>
+                        <div class="product__details__price">${product.price}</div>
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
@@ -83,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/cart/delete/PD001/${customerID}" class="primary-btn">ADD TO CARD</a>
+                        <a href="/cart/add/${product.productID}/2" class="primary-btn">ADD TO CARD</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
@@ -198,7 +201,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="${product.image}">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -206,56 +209,56 @@
                             </ul>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="#">${product.productname}</a></h6>
+                            <h5>${product.price}</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-7.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
+<!--                 <div class="col-lg-3 col-md-4 col-sm-6"> -->
+<!--                     <div class="product__item"> -->
+<!--                         <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg"> -->
+<!--                             <ul class="product__item__pic__hover"> -->
+<!--                                 <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
+<!--                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
+<!--                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
+<!--                             </ul> -->
+<!--                         </div> -->
+<!--                         <div class="product__item__text"> -->
+<!--                             <h6><a href="#">Crab Pool Security</a></h6> -->
+<!--                             <h5>$30.00</h5> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-3 col-md-4 col-sm-6"> -->
+<!--                     <div class="product__item"> -->
+<!--                         <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg"> -->
+<!--                             <ul class="product__item__pic__hover"> -->
+<!--                                 <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
+<!--                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
+<!--                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
+<!--                             </ul> -->
+<!--                         </div> -->
+<!--                         <div class="product__item__text"> -->
+<!--                             <h6><a href="#">Crab Pool Security</a></h6> -->
+<!--                             <h5>$30.00</h5> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-3 col-md-4 col-sm-6"> -->
+<!--                     <div class="product__item"> -->
+<!--                         <div class="product__item__pic set-bg" data-setbg="img/product/product-7.jpg"> -->
+<!--                             <ul class="product__item__pic__hover"> -->
+<!--                                 <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
+<!--                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
+<!--                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->
+<!--                             </ul> -->
+<!--                         </div> -->
+<!--                         <div class="product__item__text"> -->
+<!--                             <h6><a href="#">Crab Pool Security</a></h6> -->
+<!--                             <h5>$30.00</h5> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
             </div>
         </div>
     </section>

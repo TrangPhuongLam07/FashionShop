@@ -26,6 +26,7 @@ public class FashionShopApplicationIntializer implements WebApplicationInitializ
 		myCustomDispatcherServlet.setLoadOnStartup(1);
 		myCustomDispatcherServlet.addMapping("/");
 		myCustomDispatcherServlet.addMapping("/cart");
+		myCustomDispatcherServlet.addMapping("/detailProduct");
 	}
 
 }

@@ -57,24 +57,45 @@ public class ShoppingCartController {
 
 	@GetMapping
 	public String showShoppingCart(Model model, HttpSession session) {
+		String customerID = (String) session.getAttribute("customerID");
+	List<ShowCartItemDTO> listShowCartItemDTO = getListShowCartItemDTO(customerID);
 		
-		return showCartOfCustomer(model, null, session);
+		
+		long totalCartItem = totalPriceCart(listShowCartItemDTO);
+		int totalItemCart = totalItemCart(listShowCartItemDTO);
+		model.addAttribute("listShowCartItem", listShowCartItemDTO);
+		session.setAttribute("totalCart", totalCartItem);
+		session.setAttribute("totalItemCart", totalItemCart);
+		return "/shoppingCart/shopping-cart";
+//		return showCartOfCustomer(model, null, session);
 	}
 	
 //	@GetMapping("{customerID}")
 	@RequestMapping(value = "{customerID}", method = RequestMethod.GET)
 	public String showCartOfCustomer(Model model, @PathVariable("customerID") String customerID, 
 			HttpSession session) {
-		String username = "Alex Lam";
 		
 //		HttpSession session = servletRequest.getSession();
-		session.setAttribute("username", customerID);
+//		session.setAttribute("username", customerID);
 //		String customerid = (String) session.getAttribute(customerID);
 		
+		List<ShowCartItemDTO> listShowCartItemDTO = getListShowCartItemDTO(customerID);
+		
+		
+		long totalCartItem = totalPriceCart(listShowCartItemDTO);
+		int totalItemCart = totalItemCart(listShowCartItemDTO);
+		model.addAttribute("listShowCartItem", listShowCartItemDTO);
+		session.setAttribute("totalCart", totalCartItem);
+		session.setAttribute("totalItemCart", totalItemCart);
+		return "/shoppingCart/shopping-cart";
+	}
+	
+	public List<ShowCartItemDTO> getListShowCartItemDTO(String customerID){
 		String shoppingCartID = cartServices.getShoppingCartID(customerID);
 		List<CartItem> listCartItems = cartServices.listCartItems(shoppingCartID);
 		List<Product> products = productService.listProductInCart(listCartItems);
 		List<ShowCartItemDTO> listShowCartItemDTO = new ArrayList<ShowCartItemDTO>();
+		
 		
 		for (int i = 0; i < products.size(); i++) {
 			ShowCartItemDTO showItemDTO = new ShowCartItemDTO();
@@ -90,24 +111,44 @@ public class ShoppingCartController {
 			listShowCartItemDTO.add(showItemDTO);
 		}
 		
-		model.addAttribute("listShowCartItem", listShowCartItemDTO);
-		return "/shoppingCart/shopping-cart";
+		return listShowCartItemDTO;
+		
+	}
+	public long totalPriceCart(List<ShowCartItemDTO> listShowCartItemDTO) {
+		long total = 0;
+		for (ShowCartItemDTO showCartItemDTO : listShowCartItemDTO) {
+			total += showCartItemDTO.getPrice()*showCartItemDTO.getQuantity();
+		}
+		return total;
 	}
 	
-	@RequestMapping("/delete/{productID}/{customerID}")
-	public String deleteCart(@PathVariable("productID") String productID, 
-			@PathVariable("customerID") String customerID) {
+	public int totalItemCart(List<ShowCartItemDTO> listShowCartItemDTO) {
+		int total = listShowCartItemDTO.size();
 		
+		return total;
+	}
+	
+	@RequestMapping("/delete/{productID}")
+	public String deleteCart(@PathVariable("productID") String productID, HttpSession session) {
+		String customerID = (String) session.getAttribute("customerID");
+		if(customerID != null) {
+			
 		cartServices.deleteCartItem(productID);
 		return "redirect:/cart/" + customerID;
+		}
+		return "redirect:/";
 	}
 
-	@RequestMapping("/add/{productID}/{quantity}/{customerID}")
+	@RequestMapping("/add/{productID}/{quantity}")
 	public String addCart(@PathVariable("productID") String productID, 
-			@PathVariable("quantity") int quantity, @PathVariable("customerID") String customerID) {
-		
+			@PathVariable("quantity") int quantity, HttpSession session) {
+		String customerID = (String) session.getAttribute("customerID");
+		if(customerID != null) {
+			
 		cartServices.save(quantity, productID, customerID);
 		return "redirect:/" ;
+		}
+		return "redirect:/";
 	}
 	
 //	@RequestMapping(value = "/add", method = RequestMethod.POST)

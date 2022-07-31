@@ -47,24 +47,24 @@ public class FashionShopConfiguration implements WebMvcConfigurer{
 	        registry.addResourceHandler("/Source/**")
             .addResourceLocations("/WEB-INF/Source/");
 	        
-	        //logout
+	        //detailProduct
 	        
-	        registry.addResourceHandler("/logout/fonts/**")
+	        registry.addResourceHandler("/detailProduct/fonts/**")
             .addResourceLocations("/WEB-INF/fonts/");
 
-		    registry.addResourceHandler("/logout/css/**")
+		    registry.addResourceHandler("/detailProduct/css/**")
 		            .addResourceLocations("/WEB-INF/css/");
 		
-		    registry.addResourceHandler("/logout/js/**")
+		    registry.addResourceHandler("/detailProduct/js/**")
 		            .addResourceLocations("/WEB-INF/js/");
 		    	
-		    registry.addResourceHandler("/logout/img/**")
+		    registry.addResourceHandler("/detailProduct/img/**")
 		    		.addResourceLocations("/WEB-INF/img/");
 		    
-		    registry.addResourceHandler("/logout/sass/**")
+		    registry.addResourceHandler("/detailProduct/sass/**")
 		    		.addResourceLocations("/WEB-INF/sass/");
 		    
-		    registry.addResourceHandler("/logout/Source/**")
+		    registry.addResourceHandler("/detailProduct/Source/**")
 		    		.addResourceLocations("/WEB-INF/Source/");
 	        //cart
 	        

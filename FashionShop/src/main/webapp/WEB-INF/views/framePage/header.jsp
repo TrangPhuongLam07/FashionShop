@@ -51,7 +51,7 @@
 								 <a href="/login" style="display: ;" class="name"><i class="fa fa-user " ></i> ${accountname}</a>
                                
                                 
-                                <a href="/logout/${customerID}/${accountname}" class="logout">Logout</a>
+                                <a href="/logout" class="logout">Logout</a>
                                 
                             </div>
                         </div>
@@ -88,9 +88,9 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="/cart/${customerID}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>${totalItemCart}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        <div class="header__cart__price">item: <span>${totalCart}</span></div>
                     </div>
                 </div>
             </div>

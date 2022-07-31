@@ -40,11 +40,11 @@
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="/cart/add/${a.productID}/1/${customerID}"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="/cart/add/${a.productID}/1"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">${a.productname}</a></h6>
+                            <h6><a href="/detailProduct/${a.productID}">${a.productname}</a></h6>
                             <h5>${a.price}</h5>
                         </div>
                     </div>
@@ -62,6 +62,7 @@
 
                  		</span>
                  </c:forEach>
+                 
                  </div>
 
                 

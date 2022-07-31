@@ -68,4 +68,16 @@ public class ProductService {
 		
 		return products;
 	}
+
+	public List<Product> getAllProduct() {
+		// TODO Auto-generated method stub
+		List<Product> listProduct = (List<Product>) productRepo.findAll();
+		return listProduct;
+	}
+
+	public Product getProductByID(String productID) {
+		// TODO Auto-generated method stub
+		
+		return productRepo.findByProductID(productID);
+	}
 }
