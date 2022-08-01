@@ -263,6 +263,60 @@ $("#logout").one('submit', function (event){
 })
 
 
+		$("#payment-form").one('submit', function (event) {
+			event.preventDefault();
+			
+			var f = $(this).serialize();
+			
+			console.log(f);
+		const name = $("#name").val();
+		const address = $("#address").val();
+		const phone = $("#phone").val();
+		const notes = $("#notes").val();
+		
+		if(name.length == ""){
+			$(".name").addClass("is-invalid");
+		}else{
+			$(".name").removeClass("is-invalid");
+		}
+		
+		if(address.length == ""){
+			$(".address").addClass("is-invalid");
+		}else{
+			$(".address").removeClass("is-invalid");
+		}
+		
+		
+		
+		if(phone.length == ""){
+			$(".phone").addClass("is-invalid");
+		}else{
+			$(".phone").removeClass("is-invalid");
+		}
+		
+			
+			
+		if(name.length != ""  && address.length != "" && phone != "" ){
+			
+				$.ajax({
+				url: "payment",
+				data: f,
+				type:'POST',
+				success: function (data, textStatus, jqXHR){
+					console.log(data);
+					console.log("success..............")
+					
+					
+				},
+				error: function(jqXHR, texStatus, errorThrown){
+					console.log(data);
+					console.log("error...............")
+				}
+			})
+			}
+			
+})
+
 //		$("#signup").click(function(){
 //			const name = $("#name").val();
 //		const account = $("#account").val();

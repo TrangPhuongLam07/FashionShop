@@ -71,4 +71,17 @@ public class ShoppingCartServices {
 		
 	}
 
+	public void paidBill(String customerID) {
+		// TODO Auto-generated method stub
+		//set buying = paid for customer's cart
+		shoppingCartRepo.setpaidCartByCustomerID(customerID);
+		//create shopping cart by customer id
+		Customer customer = new Customer();
+		customer.setCustomerID(customerID);
+		saveShoppingCart(customer);
+		
+	}
+
+	
+
 }

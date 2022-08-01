@@ -52,11 +52,14 @@ public class Product {
 	@OneToMany(mappedBy = "productID")
 	private List<CartItem> cartItems = new ArrayList<CartItem>();
 	
+	@OneToMany(mappedBy = "productID")
+	private List<BillDetail> billDetails = new ArrayList<BillDetail>();
+	
 //	@ManyToMany(mappedBy = "products")
 //	private List<ShoppingCart> shoppingCarts = new ArrayList<ShoppingCart>();
 
-	@ManyToMany(mappedBy = "products")
-	private List<Bill> bills = new ArrayList<Bill>();
+//	@ManyToMany(mappedBy = "products")
+//	private List<Bill> bills = new ArrayList<Bill>();
 
 
 //	public Product(Categories categoryID, String productname, long price, Date dateImport, int amount, String image,
@@ -77,8 +80,8 @@ public class Product {
 		super();
 	}
 
-	public Product(Categories categoryID, String productname, long price, Date dateImport, int amount, String image,
-			List<Bill> bills) {
+	public Product(Categories categoryID, String productname, 
+			long price, Date dateImport, int amount, String image) {
 		super();
 		this.categoryID = categoryID;
 		this.productname = productname;
@@ -86,7 +89,7 @@ public class Product {
 		this.dateImport = dateImport;
 		this.amount = amount;
 		this.image = image;
-		this.bills = bills;
+//		this.bills = bills;
 	}
 
 	public String getProductID() {
@@ -153,14 +156,14 @@ public class Product {
 //		this.shoppingCarts = shoppingCarts;
 //	}
 
-	public List<Bill> getBills() {
-		return bills;
-	}
-
-	public void setBills(List<Bill> bills) {
-		this.bills = bills;
-	}
-	
+//	public List<Bill> getBills() {
+//		return bills;
+//	}
+//
+//	public void setBills(List<Bill> bills) {
+//		this.bills = bills;
+//	}
+//	
 	
 	
 }

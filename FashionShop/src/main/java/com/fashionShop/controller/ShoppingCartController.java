@@ -59,13 +59,17 @@ public class ShoppingCartController {
 	public String showShoppingCart(Model model, HttpSession session) {
 		String customerID = (String) session.getAttribute("customerID");
 	List<ShowCartItemDTO> listShowCartItemDTO = getListShowCartItemDTO(customerID);
-		
+//		long totalCartItem= (long) session.getAttribute("totalCartItem");
+//		int totalItemCart= (int) session.getAttribute("totalItemCart");
 		
 		long totalCartItem = totalPriceCart(listShowCartItemDTO);
 		int totalItemCart = totalItemCart(listShowCartItemDTO);
-		model.addAttribute("listShowCartItem", listShowCartItemDTO);
-		session.setAttribute("totalCart", totalCartItem);
-		session.setAttribute("totalItemCart", totalItemCart);
+		
+//		model.addAttribute("listShowCartItem", listShowCartItemDTO);
+//		session.setAttribute("totalCart", totalCartItem);
+//		session.setAttribute("totalItemCart", totalItemCart);
+//		model.addAttribute("totalCart", totalCartItem);
+//		model.addAttribute("totalItemCart", totalItemCart);
 		return "/shoppingCart/shopping-cart";
 //		return showCartOfCustomer(model, null, session);
 	}

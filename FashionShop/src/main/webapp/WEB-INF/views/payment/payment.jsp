@@ -1,6 +1,6 @@
 <!-- Config page -->
 <jsp:include page="../framePage/config-page.jsp"></jsp:include>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +26,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Checkout</h2>
+                        <h2>Payment</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Checkout</span>
+                            <a href="/">Home</a>
+                            <span>Payment</span>
                         </div>
                     </div>
                 </div>
@@ -49,81 +49,52 @@
             </div>
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form action="#">
+                <form action="payment" method="POST" id="payment-form">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Fist Name<span>*</span></p>
-                                        <input type="text">
-                                    </div>
+                                    <div class="checkout__input form-group">
+                                        <p>Name<span>*</span></p>
+                                        <input type="text" name="name" id="name" class="form-control name" >
+                                         <div class="invalid-feedback" style="font-size:16px; color: red;">Name is required</div>
+                                    </div> 
+                                   
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Last Name<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
+                                
                             </div>
-                            <div class="checkout__input">
-                                <p>Country<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input">
+                           
+                            <div class="checkout__input form-group">
                                 <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Street Address" class="checkout__input__add">
-                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                                <input type="text" name="address" id="address"
+                                placeholder="Street Address" class="checkout__input__add form-control address" >
+<!--                                 <input type="text" placeholder="Apartment, suite, unite ect (optinal)"> -->
+								<div class="invalid-feedback" style="font-size:16px; color: red;">Address is required</div>
                             </div>
-                            <div class="checkout__input">
-                                <p>Town/City<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input">
-                                <p>Country/State<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input">
-                                <p>Postcode / ZIP<span>*</span></p>
-                                <input type="text">
-                            </div>
+                            
+                           
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="checkout__input">
+                                    <div class="checkout__input form-group">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text" name="phone" id="phone" class="form-control phone">
+                                        <div class="invalid-feedback" style="font-size:16px; color: red;">Phone is required</div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Email<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
+                                
                             </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="acc">
-                                    Create an account?
-                                    <input type="checkbox" id="acc">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <p>Create an account by entering the information below. If you are a returning customer
-                                please login at the top of the page</p>
-                            <div class="checkout__input">
-                                <p>Account Password<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="diff-acc">
-                                    Ship to a different address?
-                                    <input type="checkbox" id="diff-acc">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Order notes<span>*</span></p>
-                                <input type="text"
+                            
+                            
+<!--                             <div class="checkout__input__checkbox"> -->
+<!--                                 <label for="diff-acc"> -->
+<!--                                     Ship to a different address? -->
+<!--                                     <input type="checkbox" id="diff-acc"> -->
+<!--                                     <span class="checkmark"></span> -->
+<!--                                 </label> -->
+<!--                             </div> -->
+                            <div class="checkout__input form-group">
+                                <p>Order notes</p>
+                                <input type="text" name="notes" id="notes" class="form-control notes"
                                     placeholder="Notes about your order, e.g. special notes for delivery.">
                             </div>
                         </div>
@@ -132,21 +103,14 @@
                                 <h4>Your Order</h4>
                                 <div class="checkout__order__products">Products <span>Total</span></div>
                                 <ul>
-                                    <li>Vegetable’s Package <span>$75.99</span></li>
-                                    <li>Fresh Vegetable <span>$151.99</span></li>
-                                    <li>Organic Bananas <span>$53.99</span></li>
+                                <c:forEach items="${listShowCartItem}" var="a">
+                                    <li>${a.productname} <span>${a.price}</span></li>
+                                </c:forEach>
+
                                 </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                                <div class="checkout__order__total">Total <span>$750.99</span></div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="acc-or">
-                                        Create an account?
-                                        <input type="checkbox" id="acc-or">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-                                    ut labore et dolore magna aliqua.</p>
+                                <div class="checkout__order__subtotal">Subtotal <span></span></div>
+                                <div class="checkout__order__total">Total <span>${totalCart}</span></div>
+                                
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">
                                         Check Payment
@@ -161,11 +125,12 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                                <button  class="site-btn">PLACE ORDER</button>
                             </div>
                         </div>
                     </div>
                 </form>
+                
             </div>
         </div>
     </section>
@@ -174,6 +139,6 @@
 
  <!-- Footer -->
 <jsp:include page="../framePage/footer.jsp"></jsp:include>
-
+   <script src="js/js-signup/signup.js"></script>
 </body>
 </html>

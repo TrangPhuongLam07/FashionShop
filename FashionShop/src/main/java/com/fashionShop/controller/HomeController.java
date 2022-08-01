@@ -72,6 +72,7 @@ public class HomeController {
 			
 			long totalCartItem = totalPriceCart(listShowCartItemDTO);
 			int totalItemCart = totalItemCart(listShowCartItemDTO);
+			session.setAttribute("listShowCartItem", listShowCartItemDTO);
 			session.setAttribute("totalCart", totalCartItem);
 			session.setAttribute("totalItemCart", totalItemCart);
 		
@@ -111,6 +112,8 @@ public class HomeController {
 	public String saleOff() {
 		return "/saleOff/sale-off";
 	}
+	
+	
 	
 	@RequestMapping("/detailProduct")
 	public String detailProduct(Model model, Product product) {
