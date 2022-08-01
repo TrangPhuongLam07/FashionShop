@@ -13,11 +13,11 @@
 <body>
 	 <section class="hero">
         <div class="container">
-	<div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+	<div class="hero__item set-bg" data-setbg="https://hstatic.net/744/1000088744/1000124945/slide2_image.jpg?v=176">
          <div class="hero__text">
-             <span>FRUIT FRESH</span>
-             <h2>Vegetable <br />100% Organic</h2>
-             <p>Free Pickup and Delivery Available</p>
+             <span>FASHION</span>
+             <h2>Bô <br />Sưu Tâp </h2>
+             <p>Mùa hè năng động</p>
              <a href="#" class="primary-btn">SHOP NOW</a>
          </div>
      </div>

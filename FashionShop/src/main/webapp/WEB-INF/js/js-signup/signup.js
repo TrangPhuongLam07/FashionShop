@@ -305,7 +305,7 @@ $("#logout").one('submit', function (event){
 				success: function (data, textStatus, jqXHR){
 					console.log(data);
 					console.log("success..............")
-					
+					alert("Success Payment")
 					
 				},
 				error: function(jqXHR, texStatus, errorThrown){

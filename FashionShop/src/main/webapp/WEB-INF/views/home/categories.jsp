@@ -17,22 +17,22 @@
             <div class="row">
                 <div class="categories__slider owl-carousel">
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
+                        <div class="categories__item set-bg" data-setbg="https://oldsailor.com.vn/vnt_upload/product/04_2022/thumbs/550_crop_af79ea6a54679a39c3761.jpg">
                             <h5><a href="#">Áo</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="https://oldsailor.com.vn/vnt_upload/product/04_2022/thumbs/550_crop_af79ea6a54679a39c3761.jpg">
+                        <div class="categories__item set-bg" data-setbg="https://oldsailor.com.vn/vnt_upload/product/04_2022/thumbs/550_crop_75ca4b78fbec35b26cfd83.jpg">
                             <h5><a href="#">Quần</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-3.jpg">
+                        <div class="categories__item set-bg" data-setbg="https://oldsailor.com.vn/vnt_upload/product/04_2022/thumbs/550_crop_3d2054273259f307aa488.jpg">
                             <h5><a href="#">Nón</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/categories/cat-4.jpg">
+                        <div class="categories__item set-bg" data-setbg="https://oldsailor.com.vn/vnt_upload/product/04_2022/thumbs/550_crop_5425f04568a1a6ffffb018.jpg">
                             <h5><a href="#">Túi</a></h5>
                         </div>
                     </div>
