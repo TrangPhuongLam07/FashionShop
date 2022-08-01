@@ -44,6 +44,11 @@ public class CustomerService {
 		customerRepo.setAccountNameByCustomerID(customerID, accountName);
 	}
 
+	public String getEmailByCustomerID(String customerID) {
+		// TODO Auto-generated method stub
+		return customerRepo.getEmailByCustomerID(customerID);
+	}
+
 	
 
 	

@@ -1,8 +1,10 @@
 package com.fashionShop.controller;
 
 import java.util.List;
+
 import java.util.Optional;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +22,7 @@ import com.fashionShop.entity.Customer;
 import com.fashionShop.entity.Product;
 import com.fashionShop.service.AccountService;
 import com.fashionShop.service.CustomerService;
+import com.fashionShop.service.EmailSenderService;
 import com.fashionShop.service.ProductService;
 import com.fashionShop.service.ShoppingCartServices;
 
@@ -29,15 +32,19 @@ public class SignUpController {
 	private final CustomerService customerService;
 	private final ProductService productService;
 	private final ShoppingCartServices shoppingCartServices;
+	
+	private final EmailSenderService senderService;
 
 	@Autowired
 	public SignUpController(AccountService accountService, CustomerService customerService,
-			ProductService productService, ShoppingCartServices shoppingCartServices) {
+			ProductService productService, ShoppingCartServices shoppingCartServices, 
+			EmailSenderService senderService) {
 		super();
 		this.accountService = accountService;
 		this.customerService = customerService;
 		this.productService = productService;
 		this.shoppingCartServices = shoppingCartServices;
+		this.senderService = senderService;
 	}
 	
 //	@RequestMapping("/signUp")
@@ -92,6 +99,7 @@ public class SignUpController {
 			
 			session.setAttribute("customerID", customerID);
 			session.setAttribute("accountname", accountname);
+			
 			return "redirect:/";
 		}
 		
@@ -100,6 +108,13 @@ public class SignUpController {
 		//check accountName is exist
 		//
 		return "redirect:/login";
+	}
+	
+	public void triggerMail(String name, String email) throws MessagingException {
+		senderService.sendSimpleEmail(email,
+				"Sign up at Fashion Town","Dear " + name + "!" + 
+				" You sign up successful");
+
 	}
 	
 	
@@ -127,7 +142,14 @@ public class SignUpController {
 			
 			//create shopping cart
 			shoppingCartServices.saveShoppingCart(customer);
+			//send email
 			
+			try {
+				triggerMail(name, email);
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return "redirect:/login";
 			
 			

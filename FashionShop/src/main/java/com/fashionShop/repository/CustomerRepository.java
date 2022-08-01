@@ -20,4 +20,7 @@ public interface CustomerRepository extends JpaRepository<Customer, String>{
 			+ "where c.customerID = ?1")
 	void setAccountNameByCustomerID(String customerID, String accountName);
 
+	@Query("select c.email from Customer c where c.customerID = ?1")
+	String getEmailByCustomerID(String customerID);
+
 }

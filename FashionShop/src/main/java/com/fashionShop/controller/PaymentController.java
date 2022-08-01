@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import com.fashionShop.entity.CartItem;
 import com.fashionShop.entity.Customer;
 import com.fashionShop.entity.Product;
 import com.fashionShop.service.BillService;
+import com.fashionShop.service.CustomerService;
+import com.fashionShop.service.EmailSenderService;
 import com.fashionShop.service.ProductService;
 import com.fashionShop.service.ShoppingCartServices;
 
@@ -27,14 +30,19 @@ public class PaymentController {
 	private final ShoppingCartServices cartServices;
 	private final ProductService productService;
 	private final BillService billService;
-
+	private final EmailSenderService senderService;
+	private final CustomerService customerService;
+	
 	@Autowired
 	public PaymentController(ShoppingCartServices cartServices, ProductService productService
-			, BillService billService) {
+			, BillService billService, EmailSenderService senderService, 
+			CustomerService customerService) {
 		super();
 		this.cartServices = cartServices;
 		this.productService = productService;
 		this.billService = billService;
+		this.senderService = senderService;
+		this.customerService = customerService;
 	}
 	
 	
@@ -81,9 +89,25 @@ public class PaymentController {
 		cartServices.paidBill(customerID);
 		System.out.println("4...........");
 		//send email bill
+		String email = customerService.getEmailByCustomerID(customerID);
+		System.out.println("email: " + email);
+		try {
+			triggerMail(name, email, billID, listShowCartItem);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "redirect:/paymentSuccess";
 	}
 	
+	public void triggerMail(String name, String email, String billID, 
+			List<ShowCartItemDTO> listShowCartItem) throws MessagingException {
+		
+		senderService.sendSimpleEmail(email,
+				"Payment at Fashion Town","Dear " + name + "!" + 
+				" Your bill ID: " + billID + "/n");
+
+	}
 	@RequestMapping("/paymentSuccess")
 	public String success_payment() {
 		
